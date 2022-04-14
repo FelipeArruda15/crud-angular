@@ -6,7 +6,7 @@ CRUD para cadastrar clientes com os seguintes dados:
   - E-mail;
   - Estado;
   - Cidade;
-  - Telefone.
+  - Telefone;
 
 
 O projeto é capaz de atender aos seguintes requisitos:
