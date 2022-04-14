@@ -1,4 +1,4 @@
-# Projeto Publica -> Avaliativo Angular
+# Projeto Publica -> Avaliação Angular
 
 
 CRUD para cadastrar clientes com os seguintes dados:
