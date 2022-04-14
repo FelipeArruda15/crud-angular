@@ -1,0 +1,84 @@
+    <form [formGroup]="formulario" (ngSubmit)="enviar()" ngNativeValidate>
+        <label for="inputNome">Nome</label>
+        <input type="text" id="inputNome" class="form-control" formControlName="nome" required
+            pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$">
+
+
+        <label for="inputEmail">Email</label>
+        <input type="text" id="inputEmail" class="form-control" formControlName="email" required
+            [textMask]="{mask: emailMask}">
+
+
+        <label for="inputTelefone">Telefone</label>
+        <input type="text" class="form-control" formControlName="telefone" id="inputTelefone" required
+            mask="(00) 00000-0000">
+
+
+
+        <label for="selectEstado">Estado</label>
+        <select class="form-control" id="selectEstado" formControlName="estado" (change)="listarCidades()"
+            (click)="listarCidades()" required>
+            <option hidden></option>
+            <option *ngFor="let estado of estados">{{estado.sigla}}</option>
+        </select>
+
+        <label for="selectCidade">Cidade</label>
+        <select class="form-control" id="selectCidade" formControlName="cidade" required>
+            <option hidden>Selecione...</option>
+            <option *ngFor="let cidade of cidades" value="{{cidade.nome}}">{{cidade.nome}}</option>
+        </select>
+
+
+        <button type="button" *ngIf="!btnVisivel" value="Alterar" class="btn btn-outline-warning"
+            (click)="alterarCliente()">Alterar</button>
+        <button type="submit" *ngIf="btnVisivel" value="Cadastrar" class="btn btn-outline-primary">Cadastrar</button>
+        <button type="button" *ngIf="!btnVisivel" value="Remover" class="btn btn-outline-danger"
+            (click)="removerCliente()">Remover</button>
+        <button type="button" *ngIf="!btnVisivel" value="Cancelar" (click)="cancelar()"
+            class="btn btn-outline-secondary">Cancelar</button>
+        <button (click)="filtrarEstados()" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Clientes Por Estado</button>
+    </form>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of clientes; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ p.nome }}</td>
+                <td>{{ p.email }}</td>
+                <td>{{ p.estado }}</td>
+                <td>{{ p.cidade }}</td>
+                <td>{{ p.telefone }}</td>
+                <td><button class="btn btn-success" (click)="selecionarCliente(p.id)">Selecionar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Quantidade de Pessoas por Estado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p *ngFor="let e of estadosQuantidade">{{ e.estado}} - {{e.quantidade + ''}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>

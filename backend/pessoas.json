@@ -1,0 +1,12 @@
+{
+  "pessoas": [
+    {
+      "id": 2,
+      "nome": "Oseias Nogueira",
+      "email": "oseias@gmail.com",
+      "telefone": "47991802278",
+      "estado": "MT",
+      "cidade": "Araputanga"
+    }
+  ]
+}
